@@ -34,6 +34,12 @@ int main(int argc, const char * argv[]) {
         //PRIMER WHILE O FUNCION QUE VALIDE QUE EL NUMERO DE POLINOMIOS A SUMAR SEA UN NUMERO
     cout<<"Introduzca la cantidad de polinomios a sumar: ";
     cin>>cantidad;
+    while (cin.fail()){ // Validacion del numero de polinomios.
+        cin.clear();
+        cout<<"Cantidad ingresada invalida. Ingresa un numero entero: ";
+        while (cin.get() != '\n') continue;
+        cin>>cantidad;
+    }
     cin.ignore();
         //HASTA AQUI
     for(int f=0;f<cantidad;f++){
