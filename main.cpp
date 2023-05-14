@@ -10,6 +10,7 @@
 #include <vector>
 #include <string>
 #include <sstream>
+#include <algorithm>
 using namespace std;
 
 struct tPolinomio{
@@ -26,7 +27,7 @@ double funcion_Maxdegree(vector<tPolinomio> &Zpolinomio);
 void funcion_definep(vector<tPolinomio> &DEFPolinom,vector<tPolinomio> &Zpolinomio,double tmax);
 void funcion_add(vector<tPolinomio> &DEFPolinom, vector<double> &result,double tmax);
 void funcion_print(vector<double> &result,double tmax);
-
+bool validacion_polinomio(string cadena);
 
 int main(int argc, const char * argv[]) {
     int cantidad=0;
@@ -44,9 +45,15 @@ int main(int argc, const char * argv[]) {
         //HASTA AQUI
     for(int f=0;f<cantidad;f++){
         //SEGUNDO WHILE O FUNCION QUE VALIDE QUE EL POLINOMIO INTRODUCIDO ESTE BIEN DIGITADO ( 5 3*x2 ≠ 53*x2)( 5 espacio 3*x2 == ERROR)
+        bool e = false;
         string frase;
         cout<<" Ingrese la cadena del polinomio "<<f+1<<": ";
+        while( e==false)
+        {
         getline(cin,frase);
+        e = validacion_polinomio(frase);
+        if (e==false) cout<<"La cadena es incorrecta, procura ingresar cada monomio sin espacios: ";
+        }
         //HASTA AQUI
     //..................................Inicio de la lectura de polinomios....................................//
         
@@ -226,4 +233,42 @@ void funcion_print(vector<double> &result,double tmax){
         else if(result[i]==0)
             nada=3.1416;}
 };
+bool validacion_polinomio(string cadena){
+    vector<string> terminos;
+        string temp;
+        bool valido = true;
+        
+        for (auto car : cadena) {
+            if (car == '+' || car == '-') {
+                terminos.push_back(temp);
+                temp = car;
+            } else {
+                temp += car;
+            }
+        }
+        terminos.push_back(temp);
+        
+        for (auto& x : terminos) {
+            if (!x.empty() and x[0]=='+' or x[0]=='-'){
+                x = x.substr(1);
+            }
 
+            // Eliminar espacios en blanco al principio del string
+            x.erase(x.begin(), find_if(x.begin(), x.end(), [](unsigned char ch) {
+                return !isspace(ch);
+            }));
+            
+            // Eliminar espacios en blanco al final del string
+            x.erase(find_if(x.rbegin(), x.rend(), [](unsigned char ch) {
+                return !isspace(ch);
+            }).base(), x.end());
+        }
+        for (auto i: terminos){
+            size_t pos= i.find(" ");
+            if (pos != string::npos){
+                valido = false;
+                break;
+                }
+        }
+        return valido;
+}
