@@ -263,12 +263,41 @@ bool validacion_polinomio(string cadena){
                 return !isspace(ch);
             }).base(), x.end());
         }
+        // Validacion para que no hayan espacios dentro de cada monomio y tampoco signos o letras demas
         for (auto i: terminos){
             size_t pos= i.find(" ");
             if (pos != string::npos){
                 valido = false;
                 break;
                 }
+            else {
+                for (int j=0; j<i.size(); j++){
+                    if ((int(i[j]!=43) and int(i[j]!=45)and int(i[j]!=46) and int(i[j]!=42) and int(i[j]!=120)) and !(int(i[j])>=48 and int(i[j])<=57))
+                        valido=false;
+                }
+            }
+        }
+        if (valido==false) return valido;
+
+        // Validacion de si no hay dos signos seguidos
+        else {
+        string ftemp;
+        for(auto x:cadena){
+            if(!isspace(x))
+                ftemp+=x;
+            else if(isspace(x) and (x+1)!=' ' and (x-1)!=' ')
+                ftemp+=x;
+        }
+        cadena=ftemp;
+    
+        for(int i=0; i<cadena.size(); i++){
+            if (((cadena[i]=='+' or cadena[i]=='-') and (cadena[i+1]=='+' or cadena[i+1]=='-')) or
+            (cadena[i]=='*' and cadena[i+1]=='*') or (cadena[i]=='x' and cadena[i+1]=='x')){
+                valido=false;
+                break;}
+
         }
         return valido;
+        }
+ 
 }
