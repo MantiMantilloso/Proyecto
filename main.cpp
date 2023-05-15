@@ -27,7 +27,6 @@ bool validacion_polinomio(string cadena);
 int main(int argc, const char * argv[]) {
     int cantidad=0;
     vector<tPolinomio> Zpolinomio;
-        //PRIMER WHILE O FUNCION QUE VALIDE QUE EL NUMERO DE POLINOMIOS A SUMAR SEA UN NUMERO
     cout<<"Introduzca la cantidad de polinomios a sumar: ";
     cin>>cantidad;
     while (cin.fail()){ // Validacion del numero de polinomios.
@@ -38,7 +37,6 @@ int main(int argc, const char * argv[]) {
     }
     cin.ignore();
     for(int f=0;f<cantidad;f++){
-        //SEGUNDO WHILE O FUNCION QUE VALIDE QUE EL POLINOMIO INTRODUCIDO ESTE BIEN DIGITADO ( 5 3*x2 ≠ 53*x2)( 5 espacio 3*x2 == ERROR)
         bool e = false;
         string frase;
         cout<<" Ingrese la cadena del polinomio "<<f+1<<": ";
@@ -46,7 +44,7 @@ int main(int argc, const char * argv[]) {
         {
         getline(cin,frase);
         e = validacion_polinomio(frase);
-        if (e==false) cout<<"La cadena es incorrecta, procura ingresar cada monomio sin espacios: ";
+        if (e==false) cout<<"La cadena es incorrecta, procura ingresar cada monomio sin espacios, signos consecutivos: ";
         }
     //..................................Inicio de la lectura de polinomios....................................//
         
