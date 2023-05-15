@@ -1,9 +1,4 @@
-//
-//  main.cpp
-//  PROYECTO TOP
-//
-//  Created by Theo Almeida on 11/5/23.
-//
+// Theo Almeida, James Soto & Mauricio Mantilla
 
 
 #include <iostream>
@@ -42,7 +37,6 @@ int main(int argc, const char * argv[]) {
         cin>>cantidad;
     }
     cin.ignore();
-        //HASTA AQUI
     for(int f=0;f<cantidad;f++){
         //SEGUNDO WHILE O FUNCION QUE VALIDE QUE EL POLINOMIO INTRODUCIDO ESTE BIEN DIGITADO ( 5 3*x2 ≠ 53*x2)( 5 espacio 3*x2 == ERROR)
         bool e = false;
@@ -54,7 +48,6 @@ int main(int argc, const char * argv[]) {
         e = validacion_polinomio(frase);
         if (e==false) cout<<"La cadena es incorrecta, procura ingresar cada monomio sin espacios: ";
         }
-        //HASTA AQUI
     //..................................Inicio de la lectura de polinomios....................................//
         
         // PASO 1:  Separamos la frase en monomios dentro de un vector
