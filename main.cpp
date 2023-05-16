@@ -29,12 +29,16 @@ int main(int argc, const char * argv[]) {
     vector<tPolinomio> Zpolinomio;
     cout<<"Introduzca la cantidad de polinomios a sumar: ";
     cin>>cantidad;
+
+// ----------------------------------------------------Chatgpt-------------------------------------------------------------------------------------------
+
     while (cin.fail()){ // Validacion del numero de polinomios.
         cin.clear();
         cout<<"Cantidad ingresada invalida. Ingresa un numero entero: ";
         while (cin.get() != '\n') continue;
         cin>>cantidad;
     }
+// ------------------------------------------------------------------------------------------------------------------------------------------------------
     cin.ignore();
     for(int f=0;f<cantidad;f++){
         bool e = false;
@@ -243,7 +247,7 @@ bool validacion_polinomio(string cadena){
             if (!x.empty() and x[0]=='+' or x[0]=='-'){
                 x = x.substr(1);
             }
-
+// ----------------------------------------------------Chatgpt-------------------------------------------------------------------------------------------
             // Eliminar espacios en blanco al principio del string
             x.erase(x.begin(), find_if(x.begin(), x.end(), [](unsigned char ch) {
                 return !isspace(ch);
@@ -254,6 +258,7 @@ bool validacion_polinomio(string cadena){
                 return !isspace(ch);
             }).base(), x.end());
         }
+// ------------------------------------------------------------------------------------------------------------------------------------------------------
         // Validacion para que no hayan espacios dentro de cada monomio y tampoco signos o letras demas
         for (auto i: terminos){
             size_t pos= i.find(" ");
